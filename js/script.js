@@ -5,8 +5,20 @@ function renderBookWindow(){
         <div class="book_ui">
             <div class="border_bottom">
                 <h2 class="title_of_book">${books[i].name}<h2>
-            <div>
-            
+            </div>
+            <div class="border_bottom book_pic_box">
+                <img class="book_pic" src="./assets/png/book-306468_640.png">
+            </div>
+            <div class="price_likes">
+                <h2 class="price">${books[i].price} €</h2> 
+                <div class="likebox">
+                    <p class="likes">${books[i].likes}</p>
+                    <img class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
+                </div>
+            </div>
+            <div class="book_info">
+            </div>
+
         
         
         </div>

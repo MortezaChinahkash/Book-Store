@@ -38,3 +38,38 @@ header{
 .border_bottom{
     border-bottom: 1px solid rgb(227, 227, 227) ;
 }
+.book_pic{
+    width: 200px;
+    margin: 20px;
+}
+.book_pic_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(18, 71, 88);
+    box-shadow: inset 0px 0px 50px 20px rgb(13, 50, 64);
+}
+.price_likes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    margin-top: 10px;
+}
+.likes{
+    font-family: "Oswald", sans-serif;
+    color: rgb(227, 227, 227);
+}
+.price{
+    font-family: "Oswald", sans-serif;
+    color: rgb(201, 95, 95)
+}
+.heart{
+    width: 35px;
+    height: 35px;
+}
+.likebox{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
