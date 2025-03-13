@@ -32,11 +32,25 @@ function renderBookWindow(){
                     </tr>
                 </table>
             </div>
-
-        
-        
+                <h3 class="commentary_header">Kommentare:</h3>
+                <div class="scrollable_div">
+                    <table id="commentaryField">
+                    <table>
+                </div>
         </div>
         `
-        
+        for (let j = 0; j < books[i].comments.length; j++) {
+            document.getElementById("commentaryField").innerHTML += /*html*/ `
+            <tr>
+                <td>${books[i].comments[j].name}</td>
+                <td>${books[i].comments[j].comment}</td>
+            </tr>
+            `;
+        }
+        }
+           
     }
-}
+
+    
+        
+    

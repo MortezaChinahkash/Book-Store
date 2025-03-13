@@ -99,3 +99,19 @@ table{
     margin-left: 20px;
     margin-right: 20px;
 }
+.commentary_header{
+    margin-top: 10px;
+    margin-left: 20px;
+    font-family: "Oswald", sans-serif;
+    color: rgb(227, 227, 227);
+}
+.scrollable_div{
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 125px;
+    scrollbar-color: rgb(13, 50, 64) rgb(18, 71, 88);
+    scrollbar-width: thin;
+
+}
