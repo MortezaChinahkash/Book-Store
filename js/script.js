@@ -16,7 +16,7 @@ function renderBookWindow(){
                     <img class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
                 </div>
             </div>
-            <div class="book_info">
+            <div class="book_info border_bottom">
                 <table>
                     <tr>
                         <td class="td_left">Author:</td>
