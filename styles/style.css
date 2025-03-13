@@ -73,3 +73,18 @@ header{
     align-items: center;
     gap: 5px;
 }
+table{
+    margin-left: 20px;
+}
+.td_left{
+    font-family: "Inter", sans-serif;
+    color: rgb(227, 227, 227);
+    font-weight: bold;
+    font-size: 14px;
+}
+.td_right{
+    font-family: "Inter", sans-serif;
+    color: rgb(227, 227, 227);
+    font-weight: bold;
+    font-size: 14px;
+}
