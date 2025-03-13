@@ -30,3 +30,11 @@ header{
     border-radius: 25px;
 
 }
+.title_of_book{
+    color: rgb(227, 227, 227);
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+}
+.border_bottom{
+    border-bottom: 1px solid rgb(227, 227, 227) ;
+}
