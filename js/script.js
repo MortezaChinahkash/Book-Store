@@ -1,7 +1,7 @@
 function renderBookWindow(){
     for (let i = 0; i < books.length; i++) {
-        const element = books[i];
-        document.getElementById("bookWindow").innerHTML += /*html*/`
+        const commentID = `commentaryField_${i}`
+        document.getElementById("bookWindow").innerHTML += `
         <div class="book_ui">
             <div class="border_bottom">
                 <h2 class="title_of_book">${books[i].name}<h2>
@@ -17,7 +17,7 @@ function renderBookWindow(){
                 </div>
             </div>
             <div class="book_info border_bottom">
-                <table>
+                <table >
                     <tr>
                         <td class="td_left">Author:</td>
                         <td class="td_right">${books[i].author}</td>
@@ -34,16 +34,20 @@ function renderBookWindow(){
             </div>
                 <h3 class="commentary_header">Kommentare:</h3>
                 <div class="scrollable_div">
-                    <table id="commentaryField">
+                    <table class="comment_window" id="${commentID}">
                     <table>
                 </div>
+                <input class="input_position" id="commentInput" type="text">
+
+                
+                
         </div>
         `
         for (let j = 0; j < books[i].comments.length; j++) {
-            document.getElementById("commentaryField").innerHTML += /*html*/ `
-            <tr>
-                <td>${books[i].comments[j].name}</td>
-                <td>${books[i].comments[j].comment}</td>
+            document.getElementById(commentID).innerHTML +=  `
+            <tr class="comment_table">
+                <td class="comment_name">[${books[i].comments[j].name}]:</td>
+                <td class="comment">${books[i].comments[j].comment}</td>
             </tr>
             `;
         }

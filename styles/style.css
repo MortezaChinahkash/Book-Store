@@ -115,3 +115,20 @@ table{
     scrollbar-width: thin;
 
 }
+.comment_name{
+    color: rgb(227, 227, 227);
+    margin: 0;
+    width: 150px;
+    vertical-align: top;
+}
+
+.comment_window{
+    margin-left: 0;
+}
+.comment{
+    color: rgb(227, 227, 227);
+}
+
+
+    
+
