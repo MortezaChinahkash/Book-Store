@@ -7,7 +7,6 @@
 function renderBookWindow(){
     for (let i = 0; i < books.length; i++) {
         let likesCalc = books[i].likes
-        console.log(likesCalc);
         const commentID = `commentaryField_${i}`
         document.getElementById("bookWindow").innerHTML += /*html*/`
         <div class="book_ui">
@@ -48,7 +47,7 @@ function renderBookWindow(){
                 </div>
                 <div class="input_window">
                     <input class="input_comment" placeholder="Schreibe deinen Kommentar..." id="commentInput" type="text">
-                    <img class="send_comment" onclick="" src="./assets/png/send_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png"
+                    <img class="send_comment" onclick="sendComment(${i})" src="./assets/png/send_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png"
                 </div>
                 
                 
@@ -64,6 +63,26 @@ function renderBookWindow(){
         }
         }
            
+    }
+    function sendComment(i) {
+        let inputValue = document.getElementById("commentInput");
+        let inputText = inputValue.value.trim();
+    
+        if (inputText !== "") { 
+            let newComment = { name: "Sascha", comment: inputText };
+            let commentID = `commentaryField_${i}`;
+            books[i].comments.unshift(newComment); 
+            document.getElementById(commentID).innerHTML = ""
+            for (let j = 0; j < books[i].comments.length; j++) {
+                document.getElementById(commentID).innerHTML += /*html*/ `
+                <tr class="comment_table">
+                    <td class="comment_name">[${books[i].comments[j].name}]:</td>
+                    <td class="comment">${books[i].comments[j].comment}</td>
+                </tr>
+                `;
+            }
+            inputValue.value = "";
+        }
     }
 
     
