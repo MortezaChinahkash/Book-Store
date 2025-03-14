@@ -1,14 +1,8 @@
-
-
-
-
-
-
-function renderBookWindow(){
-    for (let i = 0; i < books.length; i++) {
-        const commentID = `commentaryField_${i}`
-        let likedBook = books[i].liked
-        document.getElementById("bookWindow").innerHTML += /*html*/`
+function renderBookWindow() {
+  for (let i = 0; i < books.length; i++) {
+    const commentID = `commentaryField_${i}`;
+    let likedBook = books[i].liked;
+    document.getElementById("bookWindow").innerHTML += /*html*/ `
         <div class="book_ui">
             <div class="border_bottom">
                 <h2 class="title_of_book">${books[i].name}<h2>
@@ -52,63 +46,82 @@ function renderBookWindow(){
                 
                 
         </div>
-        `
-        if(likedBook == true){
-            document.getElementById(`likeButton${i}`).classList.add("heart_liked")
-        }
-           
-        for (let j = 0; j < books[i].comments.length; j++) {
-            document.getElementById(commentID).innerHTML += /*html*/ `
+        `;
+
+    if (likedBook == true) {
+      document.getElementById(`likeButton${i}`).classList.add("heart_liked");
+    }
+    getFromLocalStorage(i, likedBook);
+    for (let j = 0; j < books[i].comments.length; j++) {
+      document.getElementById(commentID).innerHTML += /*html*/ `
             <tr class="comment_table">
                 <td class="comment_name">[${books[i].comments[j].name}]:</td>
                 <td class="comment">${books[i].comments[j].comment}</td>
             </tr>
             `;
-        }
-        
-        }
-       
     }
-    function sendComment(i) {
-        let inputValue = document.getElementById(`commentInput${i}`);
-        let inputText = inputValue.value.trim();
-    
-        if (inputText !== "") { 
-            let newComment = { name: "Sascha", comment: inputText };
-            let commentID = `commentaryField_${i}`;
-            books[i].comments.unshift(newComment); 
-            document.getElementById(commentID).innerHTML = ""
-            for (let j = 0; j < books[i].comments.length; j++) {
-                document.getElementById(commentID).innerHTML += /*html*/ `
+  }
+}
+function sendComment(i) {
+  let inputValue = document.getElementById(`commentInput${i}`);
+  let inputText = inputValue.value.trim();
+
+  if (inputText !== "") {
+    let newComment = { name: "Sascha", comment: inputText };
+    let commentID = `commentaryField_${i}`;
+    books[i].comments.unshift(newComment);
+    document.getElementById(commentID).innerHTML = "";
+    for (let j = 0; j < books[i].comments.length; j++) {
+      document.getElementById(commentID).innerHTML += /*html*/ `
                 <tr class="comment_table">
                     <td class="comment_name">[${books[i].comments[j].name}]:</td>
                     <td class="comment">${books[i].comments[j].comment}</td>
                 </tr>
                 `;
-            }
-            inputValue.value = "";
-            localStorage.setItem("customComment", JSON.stringify(books[i].comments));
-        }
     }
-    
-    function likeUnlike(i) {
-        let likedBook = books[i].liked
-        if(likedBook == true){
-            books[i].liked = false
-            books[i].likes -= 1
-            document.getElementById(`likeButton${i}`).classList.remove("heart_liked")
-            localStorage.setItem("Liked", JSON.stringify(books[i].liked));
-        }
-        else if (likedBook == false){
-            books[i].liked = true
-            books[i].likes += 1
-            document.getElementById(`likeButton${i}`).classList.add("heart_liked")
-            localStorage.setItem("Liked", JSON.stringify(books[i].liked));
-        }
-        document.getElementById(`totalLikes${i}`).innerText = books[i].likes;
+    inputValue.value = "";
+    localStorage.setItem("customComment", JSON.stringify(books[i].comments));
+  }
+}
+
+function likeUnlike(i) {
+  let likedBook = books[i].liked;
+  if (likedBook == true) {
+    books[i].liked = false;
+    books[i].likes -= 1;
+    document.getElementById(`likeButton${i}`).classList.remove("heart_liked");
+  } else if (likedBook == false) {
+    books[i].liked = true;
+    books[i].likes += 1;
+    document.getElementById(`likeButton${i}`).classList.add("heart_liked");
+  }
+  document.getElementById(`totalLikes${i}`).innerText = books[i].likes;
+  localStorage.setItem(`Liked_${i}`, JSON.stringify(books[i].liked));
+  localStorage.setItem(`Likes_${i}`, JSON.stringify(books[i].likes));
+}
+
+function getFromLocalStorage(i) {
+  let storedLiked = JSON.parse(localStorage.getItem(`Liked_${i}`));
+  if (storedLiked !== null) {
+    books[i].liked = storedLiked;
+  }
+
+  let storedLikes = JSON.parse(localStorage.getItem(`Likes_${i}`));
+  if (storedLikes !== null) {
+    books[i].likes = storedLikes;
+  }
+  let likeButton = document.getElementById(`likeButton${i}`);
+  let totalLikes = document.getElementById(`totalLikes${i}`);
+
+  if (likeButton) {
+    if (books[i].liked) {
+      likeButton.classList.add("heart_liked");
+    } else {
+      likeButton.classList.remove("heart_liked");
     }
-        
-        
-    
-        
-    
+  }
+
+  if (totalLikes) {
+    totalLikes.innerText = books[i].likes;
+  }
+}
