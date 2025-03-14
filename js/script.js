@@ -87,6 +87,7 @@ function renderBookWindow(){
                 `;
             }
             inputValue.value = "";
+            localStorage.setItem("customComment", JSON.stringify(books[i].comments));
         }
     }
     
@@ -102,6 +103,7 @@ function renderBookWindow(){
             books[i].liked = true
             books[i].likes += 1
             document.getElementById(`likeButton${i}`).classList.add("heart_liked")
+            localStorage.setItem("Liked", JSON.stringify(books[i].liked));
         }
         document.getElementById(`totalLikes${i}`).innerText = books[i].likes;
     }
