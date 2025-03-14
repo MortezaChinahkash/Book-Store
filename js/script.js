@@ -8,6 +8,7 @@ function renderBookWindow(){
     for (let i = 0; i < books.length; i++) {
         let likesCalc = books[i].likes
         const commentID = `commentaryField_${i}`
+        let likedBook = books[i].liked
         document.getElementById("bookWindow").innerHTML += /*html*/`
         <div class="book_ui">
             <div class="border_bottom">
@@ -20,7 +21,7 @@ function renderBookWindow(){
                 <h2 class="price">${books[i].price.toFixed(2)} €</h2> 
                 <div class="likebox">
                     <p class="likes">${books[i].likes}</p>
-                    <img onclick="likeUnlike()" class="heart heart_liked"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
+                    <img id="likeButton" onclick="likeUnlike(${i})" class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
                 </div>
             </div>
             <div class="book_info border_bottom">
@@ -46,13 +47,17 @@ function renderBookWindow(){
                     </table>
                 </div>
                 <div class="input_window">
-                    <input class="input_comment" placeholder="Schreibe deinen Kommentar..." id="commentInput" type="text">
+                    <input class="input_comment" placeholder="Schreibe deinen Kommentar..." id="commentInput${i}" type="text">
                     <img class="send_comment" onclick="sendComment(${i})" src="./assets/png/send_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png"
                 </div>
                 
                 
         </div>
         `
+        if(likedBook == true){
+            document.getElementById("likeButton").classList.add("heart_liked")
+        }
+           
         for (let j = 0; j < books[i].comments.length; j++) {
             document.getElementById(commentID).innerHTML += /*html*/ `
             <tr class="comment_table">
@@ -61,11 +66,12 @@ function renderBookWindow(){
             </tr>
             `;
         }
+        
         }
-           
+       
     }
     function sendComment(i) {
-        let inputValue = document.getElementById("commentInput");
+        let inputValue = document.getElementById(`commentInput${i}`);
         let inputText = inputValue.value.trim();
     
         if (inputText !== "") { 
@@ -85,6 +91,12 @@ function renderBookWindow(){
         }
     }
 
-    
+    // function likeUnlike(i, likesCalc) {
+    //     let likedBook = books[i].liked
+    //     if(likedBook == true){
+    //         document.getElementById("likeButton").classList.add("heart_liked")
+    //     }
+        
+    // }
         
     
