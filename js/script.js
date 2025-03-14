@@ -1,5 +1,13 @@
+
+
+
+
+
+
 function renderBookWindow(){
     for (let i = 0; i < books.length; i++) {
+        let likesCalc = books[i].likes
+        console.log(likesCalc);
         const commentID = `commentaryField_${i}`
         document.getElementById("bookWindow").innerHTML += /*html*/`
         <div class="book_ui">
@@ -13,7 +21,7 @@ function renderBookWindow(){
                 <h2 class="price">${books[i].price.toFixed(2)} €</h2> 
                 <div class="likebox">
                     <p class="likes">${books[i].likes}</p>
-                    <img class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
+                    <img onclick="likeUnlike()" class="heart heart_liked"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
                 </div>
             </div>
             <div class="book_info border_bottom">
