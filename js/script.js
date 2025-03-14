@@ -6,7 +6,6 @@
 
 function renderBookWindow(){
     for (let i = 0; i < books.length; i++) {
-        let likesCalc = books[i].likes
         const commentID = `commentaryField_${i}`
         let likedBook = books[i].liked
         document.getElementById("bookWindow").innerHTML += /*html*/`
@@ -20,7 +19,7 @@ function renderBookWindow(){
             <div class="price_likes">
                 <h2 class="price">${books[i].price.toFixed(2)} €</h2> 
                 <div class="likebox">
-                    <p class="likes">${books[i].likes}</p>
+                    <p id="totalLikes${i}"class="likes">${books[i].likes}</p>
                     <img id="likeButton${i}" onclick="likeUnlike(${i})" class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
                 </div>
             </div>
@@ -90,13 +89,24 @@ function renderBookWindow(){
             inputValue.value = "";
         }
     }
-
-    // function likeUnlike(i, likesCalc) {
-    //     let likedBook = books[i].liked
-    //     if(likedBook == true){
-    //         document.getElementById("likeButton").classList.add("heart_liked")
-    //     }
+    
+    function likeUnlike(i) {
+        let likedBook = books[i].liked
+        if(likedBook == true){
+            books[i].liked = false
+            books[i].likes -= 1
+            document.getElementById(`likeButton${i}`).classList.remove("heart_liked")
+            localStorage.setItem("Liked", JSON.stringify(books[i].liked));
+        }
+        else if (likedBook == false){
+            books[i].liked = true
+            books[i].likes += 1
+            document.getElementById(`likeButton${i}`).classList.add("heart_liked")
+        }
+        document.getElementById(`totalLikes${i}`).innerText = books[i].likes;
+    }
         
-    // }
+        
+    
         
     
