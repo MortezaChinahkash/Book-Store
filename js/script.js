@@ -21,7 +21,7 @@ function renderBookWindow(){
                 <h2 class="price">${books[i].price.toFixed(2)} €</h2> 
                 <div class="likebox">
                     <p class="likes">${books[i].likes}</p>
-                    <img id="likeButton" onclick="likeUnlike(${i})" class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
+                    <img id="likeButton${i}" onclick="likeUnlike(${i})" class="heart"src="./assets/png/favorite_50dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png">
                 </div>
             </div>
             <div class="book_info border_bottom">
@@ -55,7 +55,7 @@ function renderBookWindow(){
         </div>
         `
         if(likedBook == true){
-            document.getElementById("likeButton").classList.add("heart_liked")
+            document.getElementById(`likeButton${i}`).classList.add("heart_liked")
         }
            
         for (let j = 0; j < books[i].comments.length; j++) {
