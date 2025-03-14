@@ -33,7 +33,6 @@ function renderBookWindow() {
                     </tr>
                 </table>
             </div>
-
                 <h3 class="commentary_header">Kommentare:</h3>
                 <div class="scrollable_div">
                     <table class="comment_window" id="${commentID}">
@@ -43,8 +42,6 @@ function renderBookWindow() {
                     <input class="input_comment" placeholder="Schreibe deinen Kommentar..." id="commentInput${i}" type="text">
                     <img class="send_comment" onclick="sendComment(${i})" src="./assets/png/send_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png"
                 </div>
-                
-                
         </div>
         `;
 
@@ -80,7 +77,7 @@ function sendComment(i) {
                 `;
     }
     inputValue.value = "";
-    localStorage.setItem("customComment", JSON.stringify(books[i].comments));
+    localStorage.setItem(`customComment${i}`, JSON.stringify(books[i].comments));
   }
 }
 
@@ -123,5 +120,9 @@ function getFromLocalStorage(i) {
 
   if (totalLikes) {
     totalLikes.innerText = books[i].likes;
+  }
+  let customComment = JSON.parse(localStorage.getItem(`customComment${i}`));
+  if (customComment){
+    books[i].comments = customComment
   }
 }
