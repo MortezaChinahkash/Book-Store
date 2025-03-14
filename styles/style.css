@@ -126,3 +126,26 @@ table {
 .comment {
   color: rgb(227, 227, 227);
 }
+.input_comment{
+  background: rgb(18, 71, 88);
+  margin-left: 20px;
+  border: none;
+  border-bottom: 2px solid rgb(227, 227, 227);
+  flex: 1;
+  height: 20px;
+  color:rgb(227, 227, 227) ;
+}
+.input_comment::placeholder{
+  color: rgb(146, 146, 146) ;
+}
+.input_window{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.send_comment{
+  width: 30px;
+  margin-right: 20px;
+  cursor: pointer;
+}

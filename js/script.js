@@ -32,15 +32,16 @@ function renderBookWindow(){
                     </tr>
                 </table>
             </div>
+
                 <h3 class="commentary_header">Kommentare:</h3>
                 <div class="scrollable_div">
                     <table class="comment_window" id="${commentID}">
-                    <table>
+                    </table>
                 </div>
-
-                <input id="commentInput" type="text">
-                <button>Senden</button>
-
+                <div class="input_window">
+                    <input class="input_comment" placeholder="Schreibe deinen Kommentar..." id="commentInput" type="text">
+                    <img class="send_comment" onclick="" src="./assets/png/send_40dp_E3E3E3_FILL0_wght400_GRAD0_opsz40.png"
+                </div>
                 
                 
         </div>
