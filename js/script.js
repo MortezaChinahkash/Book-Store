@@ -55,28 +55,5 @@ function getFromLocalStorage(i) {
   let totalLikes = document.getElementById(`totalLikes${i}`);
   let storedLikes = JSON.parse(localStorage.getItem(`Likes_${i}`));
   let customComment = JSON.parse(localStorage.getItem(`customComment${i}`));
-
-  if (storedLiked !== null) {
-    books[i].liked = storedLiked;
-  }
-  
-  if (storedLikes !== null) {
-    books[i].likes = storedLikes;
-  }
-  
-  if (likeButton) {
-    if (books[i].liked) {
-      likeButton.classList.add("heart_liked");
-    } else {
-      likeButton.classList.remove("heart_liked");
-    }
-  }
-
-  if (totalLikes) {
-    totalLikes.innerText = books[i].likes;
-  }
-  
-  if (customComment){
-    books[i].comments = customComment
-  }
+  getFromLocalStorageTemplate(storedLiked, likeButton, totalLikes, storedLikes, customComment);
 }
