@@ -1,18 +1,12 @@
 function renderBookWindow() {
+  document.getElementById("bookWindow").innerHTML = "";
+
   for (let i = 0; i < books.length; i++) {
     const commentID = `commentaryField_${i}`;
-    let likedBook = books[i].liked;
-    document.getElementById("bookWindow").innerHTML += renderBookWindowHTMLTemplate(i, commentID)
-
-    if (likedBook == true) {
-      document.getElementById(`likeButton${i}`).classList.add("heart_liked");
-    }
+    
+    document.getElementById("bookWindow").innerHTML += renderBookWindowHTMLTemplate(i, commentID);
 
     getFromLocalStorage(i);
-
-    for (let j = 0; j < books[i].comments.length; j++) {
-      document.getElementById(commentID).innerHTML += renderBookWindowCommentSectionHTMLTemplate(i, j) 
-    }
   }
 }
 
@@ -29,7 +23,7 @@ function sendComment(i) {
       document.getElementById(commentID).innerHTML += sendCommentHTMLTemplate(i, j) 
     }
     inputValue.value = "";
-    localStorage.setItem(`customComment${i}`, JSON.stringify(books[i].comments));
+    localStorage.setItem(`Books-Data`, JSON.stringify(books));
   }
 }
 
@@ -45,15 +39,12 @@ function likeUnlike(i) {
     document.getElementById(`likeButton${i}`).classList.add("heart_liked");
   }
   document.getElementById(`totalLikes${i}`).innerText = books[i].likes;
-  localStorage.setItem(`Liked_${i}`, JSON.stringify(books[i].liked));
-  localStorage.setItem(`Likes_${i}`, JSON.stringify(books[i].likes));
+  localStorage.setItem(`Books-Data`, JSON.stringify(books));
 }
 
 function getFromLocalStorage(i) {
-  let storedLiked = JSON.parse(localStorage.getItem(`Liked_${i}`));
   let likeButton = document.getElementById(`likeButton${i}`);
   let totalLikes = document.getElementById(`totalLikes${i}`);
-  let storedLikes = JSON.parse(localStorage.getItem(`Likes_${i}`));
-  let customComment = JSON.parse(localStorage.getItem(`customComment${i}`));
-  getFromLocalStorageTemplate(storedLiked, likeButton, totalLikes, storedLikes, customComment);
+  let commentField = document.getElementById(`commentaryField_${i}`);
+  getFromLocalStorageTemplate(i, likeButton, totalLikes, commentField);
 }

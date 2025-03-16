@@ -1,12 +1,10 @@
-function getFromLocalStorageTemplate(storedLiked, likeButton, totalLikes, storedLikes, customComment){
-
-  if (storedLiked !== null) {
-    books[i].liked = storedLiked;
-  }
+function getFromLocalStorageTemplate(i, likeButton, totalLikes, commentField){
+  let storedBooks = JSON.parse(localStorage.getItem("Books-Data")) || [];
   
-  if (storedLikes !== null) {
-    books[i].likes = storedLikes;
+  if (storedBooks.length > 0) {
+    books = storedBooks;
   }
+
   
   if (likeButton) {
     if (books[i].liked) {
@@ -19,8 +17,10 @@ function getFromLocalStorageTemplate(storedLiked, likeButton, totalLikes, stored
   if (totalLikes) {
     totalLikes.innerText = books[i].likes;
   }
-  
-  if (customComment){
-    books[i].comments = customComment;
+  if (commentField) {
+    commentField.innerHTML = "";
+    for (let j = 0; j < books[i].comments.length; j++) {
+      commentField.innerHTML += renderBookWindowCommentSectionHTMLTemplate(i, j);
+    }
   }
 }
